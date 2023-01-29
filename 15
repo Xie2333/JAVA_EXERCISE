@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>>v2;
+        if(nums.size()<3){
+            return v2;
+        }
+        sort(nums.begin(),nums.end());
+        for (int a = 0; a < nums.size()-1; a++) {
+            if(a > 0 && nums[a]==nums[a-1]){
+                continue;
+            }
+            //c初始指向数组最右边
+            int c = nums.size()-1;
+            //目标需要和nums[a]相反->加起来等于0
+            int target = -nums[a];
+            for(int b = a+1;b<c;b++){
+               if(b > a+1 && nums[b] == nums[b-1]){
+                continue;
+                }
+                for(;b<c && nums[b]+nums[c]>target;c--){
+                }
+                if(b!=c && nums[b]+nums[c]==target){
+                    v2.push_back(vector<int>{nums[a], nums[b], nums[c]});
+                }
+            }
+        }
+        return v2;
+    }
+};
