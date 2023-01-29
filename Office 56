@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> singleNumbers(vector<int>& nums) {
+        if(nums.size()==0){
+            return vector<int>{0,0};
+        }
+        int a = 0;
+        for(int i : nums){
+            a ^= i;
+        }
+        //a = b ^ c;
+        int r = a & (~a + 1);//r为b和c一个位上的不同
+        int f = 0;
+        for(int i : nums){
+            if((i&r)==0){
+                f ^= i;//f就为b或者c
+            }
+        }
+        return vector<int>{f,f^a};
+    }
+};
