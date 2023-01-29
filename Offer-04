@@ -1,0 +1,53 @@
+void test(vector<vector<int>> &a, vector<int>::iterator &returnit,int lcount,int count) {
+	vector<vector<int>>::iterator it = a.begin();
+	for (int i = 0; i < lcount-1; i++) {
+		it++;
+	}
+	vector<int>::iterator it1 = (*it).begin();
+	for (int i = 0; i < count-1; i++) {
+		it1++;
+	}
+	returnit = it1;
+}
+class Solution {
+public:
+    bool findNumberIn2DArray(vector<vector<int>>& matrix, int target) {
+        if(matrix.empty()){
+            return false;
+        }
+        vector<vector<int>>::iterator it = matrix.begin();
+        if((*it).empty()){
+            return false;
+        }
+	    vector<int>::iterator it1 = (*it).begin();
+	    int count = 0;
+	    int lcount = 0;
+	    for (; it1 != (*it).end(); it1++) {
+		    count++;
+	    }
+	    for (; it != matrix.end(); it++) {
+		    lcount++;
+	    }
+    	for (int i = 1; i <= lcount; ) {
+		    for (int j = count; j > 0; ) {
+			    test(matrix, it1, i, j);
+			    if (*it1 > target) {
+				    j--;
+				    if (j <= 0) {
+					    return false;
+				    }
+			    }
+			    else if (*it1 == target) {
+				    return true;
+			    }
+			    else if (*it1 < target) {
+				    i++;
+				    if (i > lcount) {
+					    return false;
+				    }
+			    }
+		    }
+	    }	
+	    return false;
+    }
+};
