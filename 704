@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+    //传入数组为0
+        if (nums.size() == 0) {
+            return -1;
+        }
+        int left = 0;
+        int right = nums.size()-1;
+        int mid = nums.size() / 2;
+        while(left <= right){
+            if(nums[mid] > target){
+                right = mid - 1;
+                mid = (right + left) / 2;
+            }
+            else if (nums[mid] < target) {
+                left = mid + 1;
+                mid = (right + left) / 2;
+            }
+            else {
+                return mid;
+            }
+        }
+        return -1;    
+    }
+};
