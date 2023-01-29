@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool detectCapitalUse(string word) {
+        int bigcount=0,lowcount=0;
+        for(auto c : word){
+            if(isupper(c))
+                bigcount++;
+            if(islower(c))
+                lowcount++;
+        }
+        if(isupper(word[0]) && lowcount+1 == word.size())
+            return true;
+        if(bigcount == word.size())
+            return true;
+        if(lowcount == word.size())
+            return true;
+        return false;
+    }
+};
