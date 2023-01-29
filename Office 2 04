@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+       unordered_map<int, int> counts;
+        for (int i : nums) {
+            counts[i]++;
+        }
+        for (int i : nums) {
+            if (counts[i] == 1) {
+                return i;
+            };
+        }
+        return -1;   
+    }
+};
